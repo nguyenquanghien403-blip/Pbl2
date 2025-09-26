@@ -46,7 +46,6 @@ void Patient::nhap()
 {
     cout << "Ten benh nhan: ";
     getline(cin, tenBN);
-    int gioitinh;
     cout << "Chon gioi tinh:\n";
     cout << "1. Nam\n";
     cout << "2. Nu\n";
@@ -109,6 +108,7 @@ void Patient::hienthithongtinbn()
 {
     cout << "Ten benh nhan: " << tenBN << endl;
     cout << "So dien thoai: " << sdtbn << endl;
+    cout << " Gioi tinh: " << gioitinh << endl;
     cout << "Can cuoc cong dan: " << cccd << endl;
     cout << " Ngay: " << ngay << " Thang " << thang << " Nam " << nam << endl;
     cout << " Dia chi: " << endl;
@@ -116,28 +116,4 @@ void Patient::hienthithongtinbn()
     cout << "-Phuong: " << diachi_phuong << endl;
     cout << "-Thanh pho: " << diachi_tp << endl;
     cout << "-Quoc gia: " << diachi_qg << endl;
-}
-
-void Lichkham::nhap()
-{
-    cin >> ngaykham;
-    cin >> giokham;
-    cin.ignore();
-    getline(cin, trangthai);
-}
-void Lichkham::hienthithongtinlichkham()
-{
-    cout << "Ngay kham: " << ngaykham << endl;
-    cout << "Gio kham: " << giokham << endl;
-    cout << "trang thai: " << trangthai << endl;
-}
-void Phongkham::nhap()
-{
-    getline(cin, tenPhong);
-    getline(cin, tenKhoa);
-}
-void Phongkham::hienthithongtinphongkham()
-{
-    cout << "Ten phong: " << tenPhong << endl;
-    cout << "ten khoa: " << tenKhoa << endl;
 }

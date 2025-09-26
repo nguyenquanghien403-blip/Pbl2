@@ -1,5 +1,6 @@
 #include "Bacsi.h"
-bool Ktrasdt(const string &p)
+
+bool Doctor::Ktrasdt(const string &p)
 {
     /// so dien thoai co 10 so
     /// luc dau bat dau co
@@ -16,45 +17,69 @@ bool Ktrasdt(const string &p)
 }
 void Doctor::nhap()
 {
-    cin >> id_BS;
     cout << "Nhap ten bac si: ";
     getline(cin, tenBS);
-    cin.ignore();
-    cout << "So dien thoai";
-    getline(cin, sdt);
     do
     {
+        cout << "So dien thoai: ";
+        cin >> sdt;
         if (!Ktrasdt(sdt))
-            cout << "So dien thoai khong hop le!\nVui long nhap lai.....";
+            cout << "So dien thoai khong hop le!\nVui long nhap lai.....\n";
     } while (!Ktrasdt(sdt));
-    cout << "Nhap chuyen khoa: ";
+    cout << "Nhap chuyen khoa: " << '\n';
+    cout << "1. Khoa tim mach\n";
+    cout << "2. Noi Khoa\n";
+    cout << "3. Ngoai khoa\n";
+    cout << "4. Da lieu\n";
+    cout << "5. Tai mui hong\n";
+    cout << "Nhap lua chon cua ban tu (1->5): ";
     /// chuyen nganh khoa : khoa noi khoa ngoai khoa kham benh
-    cout << "Chuyen nganh: ";
-    getline(cin, chuyenkhoa);
-    cin.ignore();
-    cout << " chon phong ban" << '\n';
-    cout << "Lua chon tu 1-9" << '\n';
-    // cout<<""
-    int Khoa = 5;
-    switch (Khoa)
+    cin >> chuyenkhoa;
+    switch (chuyenkhoa)
     {
     case 1:
-        cout << "Khoa tim mach";
+        cout << "Khoa tim mach" << endl;
+        break;
     case 2:
-        cout << "Noi khoa";
+        cout << "Noi khoa" << endl;
+        break;
     case 3:
-        cout << "Ngoai khoa";
+        cout << "Ngoai khoa" << endl;
+        break;
     case 4:
-        cout << "Da lieu";
+        cout << "Da lieu" << endl;
+        break;
     case 5:
-        cout << "Tai mui hong";
+        cout << "Tai mui hong" << endl;
+        break;
     default:
         cout << "Khong co khoa hop le!\n";
+        break;
     }
 }
 void Doctor::hienthithongtinbs()
 {
     cout << " Ho va ten bac si: " << tenBS << endl;
-    cout << " Chuyen khoa: " << chuyenkhoa << endl;
     cout << " So dien thoai: " << sdt << endl;
+    switch (chuyenkhoa)
+    {
+    case 1:
+        cout << "Khoa tim mach" << endl;
+        break;
+    case 2:
+        cout << "Noi khoa" << endl;
+        break;
+    case 3:
+        cout << "Ngoai khoa" << endl;
+        break;
+    case 4:
+        cout << "Da lieu" << endl;
+        break;
+    case 5:
+        cout << "Tai mui hong" << endl;
+        break;
+    default:
+        cout << "Khong co khoa hop le!\n";
+        break;
+    }
 }

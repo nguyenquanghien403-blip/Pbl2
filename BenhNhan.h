@@ -6,7 +6,7 @@ class Patient
 private:
     string id_bn;
     string tenBN;
-    string gioitinh;
+    int gioitinh;
     string sdtbn;
     string cccd;
     int ngay, thang, nam;
@@ -18,47 +18,4 @@ public:
     bool Ktrasdt(const string &);
     bool Ktracccd(const string &);
     bool Ktrangaythangnamsinh(int, int, int);
-};
-class Lichkham
-{
-private:
-    int ngaykham;
-    int giokham;
-    string trangthai;
-
-public:
-    void nhap();
-    void hienthithongtinlichkham();
-};
-class Phongkham
-{
-private:
-    string tenPhong;
-    string tenKhoa;
-
-public:
-    void nhap();
-    void hienthithongtinphongkham();
-};
-class Benhan
-{
-};
-class User
-{
-private:
-    int maND;
-    string ten;
-    string gioitinh;
-    int ngaysinh, thangsinh, namsinh;
-    string diachi;
-
-public:
-    void nhap();
-    void hienthithongtinUser();
-};
-class Hoadon
-{
-private:
-    int tongtien;
-    string noidung;
 };
