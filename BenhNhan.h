@@ -19,18 +19,6 @@ public:
     bool Ktracccd(const string &);
     bool Ktrangaythangnamsinh(int, int, int);
 };
-class Doctor
-{
-private:
-    string tenBS;
-    string chuyenkhoa;
-    int sdtbs;
-    string phongLV;
-
-public:
-    void nhap();
-    void hienthithongtinbs();
-};
 class Lichkham
 {
 private:

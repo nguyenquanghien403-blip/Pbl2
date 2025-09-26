@@ -117,20 +117,7 @@ void Patient::hienthithongtinbn()
     cout << "-Thanh pho: " << diachi_tp << endl;
     cout << "-Quoc gia: " << diachi_qg << endl;
 }
-void Doctor::nhap()
-{
-    getline(cin, tenBS);
-    getline(cin, chuyenkhoa);
-    cin >> sdtbs;
-    cin.ignore();
-    getline(cin, phongLV);
-}
-void Doctor::hienthithongtinbs()
-{
-    cout << "Ten bac si: " << tenBS << endl;
-    cout << "Chuyen khoa: " << chuyenkhoa << endl;
-    cout << "So dien thoai cua bac si: " << sdtbs << endl;
-}
+
 void Lichkham::nhap()
 {
     cin >> ngaykham;
