@@ -57,6 +57,24 @@ void Doctor::nhap()
         break;
     }
 }
+string Doctor::write()
+{
+    stringstream s;
+    s << tenBS << "|" << sdt << "|" << chuyenkhoa << "|" << endl;
+    return s.str();
+}
+void Doctor::read(const string &p)
+{
+    stringstream s(p);
+    string token;
+    Doctor c;
+    getline(s, tenBS, '|');
+    getline(s, sdt, '|');
+    string ck;
+    getline(s, ck, '|');
+    chuyenkhoa = stoi(ck);
+    // return p;
+}
 void Doctor::hienthithongtinbs()
 {
     cout << " Ho va ten bac si: " << tenBS << endl;
@@ -64,22 +82,22 @@ void Doctor::hienthithongtinbs()
     switch (chuyenkhoa)
     {
     case 1:
-        cout << "Khoa tim mach" << endl;
+        cout << " Khoa tim mach" << endl;
         break;
     case 2:
-        cout << "Noi khoa" << endl;
+        cout << " Noi khoa" << endl;
         break;
     case 3:
-        cout << "Ngoai khoa" << endl;
+        cout << " Ngoai khoa" << endl;
         break;
     case 4:
-        cout << "Da lieu" << endl;
+        cout << " Da lieu" << endl;
         break;
     case 5:
-        cout << "Tai mui hong" << endl;
+        cout << " Tai mui hong" << endl;
         break;
     default:
-        cout << "Khong co khoa hop le!\n";
+        cout << " Khong co khoa hop le!\n";
         break;
     }
 }
