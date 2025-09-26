@@ -8,14 +8,20 @@ private:
   int chuyenkhoa;
   string sdt;
   string PLV;
+  static int next_ID;
 
 public:
-  Doctor() {};
-  Doctor(string id) : id_BS(id) {};
-  string getID() { return id_BS; }
+  Doctor()
+  {
+    next_ID++;
+    ostringstream s;
+    cout << setw(3) << " " << setfill('0') << next_ID;
+    id_BS = s.str();
+  };
+  string getID() const { return id_BS; }
   void nhap();
   bool Ktrasdt(const string &);
   void hienthithongtinbs();
   string write();
-  void read(const string &);
+  static Doctor read(const string &);
 };

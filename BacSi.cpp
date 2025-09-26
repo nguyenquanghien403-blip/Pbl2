@@ -1,5 +1,5 @@
 #include "Bacsi.h"
-
+int Doctor::next_ID = 10;
 bool Doctor::Ktrasdt(const string &p)
 {
     /// so dien thoai co 10 so
@@ -63,17 +63,17 @@ string Doctor::write()
     s << tenBS << "|" << sdt << "|" << chuyenkhoa << "|" << endl;
     return s.str();
 }
-void Doctor::read(const string &p)
+Doctor Doctor::read(const string &p)
 {
     stringstream s(p);
     string token;
     Doctor c;
-    getline(s, tenBS, '|');
-    getline(s, sdt, '|');
+    getline(s, c.tenBS, '|');
+    getline(s, c.sdt, '|');
     string ck;
     getline(s, ck, '|');
-    chuyenkhoa = stoi(ck);
-    // return p;
+    c.chuyenkhoa = stoi(ck); // định dạng về kiểu int
+    return c;
 }
 void Doctor::hienthithongtinbs()
 {
