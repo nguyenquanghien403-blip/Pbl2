@@ -81,7 +81,7 @@ void Doctor::hienthithongtinbs()
     cout << " So dien thoai: " << sdt << endl;
     switch (chuyenkhoa)
     {
-    case 1:
+    case 0:
         cout << " Khoa tim mach" << endl;
         break;
     case 2:
