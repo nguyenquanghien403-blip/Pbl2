@@ -37,7 +37,7 @@ void Doctor::nhap()
     cin >> chuyenkhoa;
     switch (chuyenkhoa)
     {
-    case 0:
+    case 1:
         cout << "Khoa tim mach" << endl;
         break;
     case 2:
