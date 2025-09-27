@@ -1,4 +1,5 @@
 #include "BenhNhan.h"
+#include <bits/stdc++.h>
 bool Patient::Ktrasdt(const string &p)
 {
     if (p.length() != 10)
@@ -42,6 +43,37 @@ bool Patient::Ktrangaythangnamsinh(int ngay, int thang, int nam)
     return true;
 }
 
+string Patient::write()
+{
+    stringstream s;
+    s << tenBN << "|" << gioitinh << "|" << sdtbn << "|" << cccd << "|" << ngay << "|" << thang << "|" << nam << "|" << diachi_to << "|" << diachi_phuong << "|" << diachi_tp << "|" << diachi_qg << endl;
+    return s.str();
+}
+Patient Patient::read(const string &p)
+{
+    stringstream s(p);
+    string token;
+    Patient c;
+    getline(s, c.tenBN, '|');
+    getline(s, c.sdtbn, '|');
+    /*string ck;
+    getline(s, ck, '|');
+    c.chuyenkhoa = stoi(ck); // định dạng về kiểu int*/
+    cin >> c.gioitinh;
+    cout << '|';
+    getline(s, c.cccd, '|');
+    cin >> c.ngay;
+    cout << '|';
+    cin >> c.thang;
+    cout << '|';
+    cin >> c.nam;
+    cout << '|';
+    getline(s, c.diachi_to, '|');
+    getline(s, c.diachi_phuong, '|');
+    getline(s, c.diachi_tp, '|');
+    getline(s, c.diachi_qg, '|');
+    return c;
+}
 void Patient::nhap()
 {
     cout << "Ten benh nhan: ";

@@ -1,10 +1,10 @@
-#include "BacSi.cpp"
+#include "BenhNhan.cpp"
 
 int main()
 {
-    Doctor t;
+    Patient t;
 
     t.nhap();
-    t.hienthithongtinbs();
+    t.hienthithongtinbn();
     return 0;
 }

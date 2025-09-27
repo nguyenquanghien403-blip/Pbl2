@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
-#include "BacSi.h"
+#include "BenhNhan.h"
+#include "Doctor.h"
 using namespace std;
 class Quanly
 {

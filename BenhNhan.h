@@ -18,4 +18,6 @@ public:
     bool Ktrasdt(const string &);
     bool Ktracccd(const string &);
     bool Ktrangaythangnamsinh(int, int, int);
+    string write();
+    static Patient read(const string &);
 };
