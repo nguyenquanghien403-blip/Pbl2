@@ -1,19 +1,27 @@
 #include <bits/stdc++.h>
 #include "BenhNhan.h"
-#include "Doctor.h"
+#include "BacSi.h"
 using namespace std;
+#pragma once
 class Quanly
 {
 private:
-    vector<Doctor> ds;
-    int next_id;
+    Patient *ds;
+    int succhua;
+    int soluong;
+    int next_idbn;
+    int next_idbs;
 
 public:
-    Quanly();
+    Quanly(int cp = 10);
+    ~Quanly();
+    void them(Patient &);
     void load();
+    void xuat();
     void save();
 
-    void themBN();
+    /// void themBN();
     void hienthi();
-    void xoaBN();
+    void xoa(const string &);
+    void cleanfile(const string &);
 };

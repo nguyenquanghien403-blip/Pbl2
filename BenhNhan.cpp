@@ -1,5 +1,6 @@
 #include "BenhNhan.h"
 #include <bits/stdc++.h>
+#include <filesystem>
 bool Patient::Ktrasdt(const string &p)
 {
     if (p.length() != 10)
@@ -43,37 +44,68 @@ bool Patient::Ktrangaythangnamsinh(int ngay, int thang, int nam)
     return true;
 }
 
-string Patient::write()
+void Patient::write(const string &fl) const
 {
-    stringstream s;
-    s << tenBN << "|" << gioitinh << "|" << sdtbn << "|" << cccd << "|" << ngay << "|" << thang << "|" << nam << "|" << diachi_to << "|" << diachi_phuong << "|" << diachi_tp << "|" << diachi_qg << endl;
-    return s.str();
+    cout << "Dang mo file" << filesystem ::absolute(fl) << endl;
+    /// p.write("BenhNhan.txt");
+    ofstream fout(fl, ios::app);
+    if (!fout.is_open())
+    {
+        cerr << " file 0 mo duoc " << fl << "de ghi\n";
+        perror("Ly do");
+        return;
+        /// return *this;
+    }
+    fout << id_bn << "|" << tenBN << "|" << gioitinh << "|" << sdtbn << "|" << cccd << "|" << ngay << "|" << thang << "|" << nam << "|" << diachi_to << "|" << diachi_phuong << "|" << diachi_tp << "|" << diachi_qg << endl;
+    fout.close();
+    /// return *this;
 }
-Patient Patient::read(const string &p)
+
+Patient Patient::read(const string &s)
 {
-    stringstream s(p);
-    string token;
-    Patient c;
-    getline(s, c.tenBN, '|');
-    getline(s, c.sdtbn, '|');
-    /*string ck;
-    getline(s, ck, '|');
-    c.chuyenkhoa = stoi(ck); // định dạng về kiểu int*/
-    cin >> c.gioitinh;
-    cout << '|';
-    getline(s, c.cccd, '|');
-    cin >> c.ngay;
-    cout << '|';
-    cin >> c.thang;
-    cout << '|';
-    cin >> c.nam;
-    cout << '|';
-    getline(s, c.diachi_to, '|');
-    getline(s, c.diachi_phuong, '|');
-    getline(s, c.diachi_tp, '|');
-    getline(s, c.diachi_qg, '|');
-    return c;
+    Patient p;
+    // p.read("BenhNhan.txt");
+    //  s << p.tenBN << "|" << gioitinh << "|" << sdtbn << "|" << cccd << "|" << ngay << "|" << thang << "|" << nam << "|" << diachi_to << "|" << diachi_phuong << "|" << diachi_tp << "|" << diachi_qg << endl;
+    stringstream ss(s);
+    string tp;
+    getline(ss, p.id_bn, '|');
+    getline(ss, p.tenBN, '|');
+    getline(ss, tp, '|');
+    p.gioitinh = tp.empty() ? 0 : stoi(tp); // định dạng chuyển kiểu int -> string để sử dụng getline
+    getline(ss, p.sdtbn, '|');
+    getline(ss, p.cccd, '|');
+    getline(ss, tp, '|');
+    p.ngay = tp.empty() ? 0 : stoi(tp);
+    getline(ss, tp, '|');
+    p.thang = tp.empty() ? 0 : stoi(tp);
+    getline(ss, tp, '|');
+    p.nam = tp.empty() ? 0 : stoi(tp);
+    getline(ss, p.diachi_to, '|');
+    getline(ss, p.diachi_phuong, '|');
+    getline(ss, p.diachi_tp, '|');
+    getline(ss, p.diachi_qg, '|');
+
+    return p;
 }
+string Patient::chuoi() const
+{
+    stringstream ss;
+    ss << id_bn << "|" << tenBN << "|" << gioitinh << "|" << sdtbn << "|" << cccd << "|" << ngay << "|" << thang << "|" << nam << "|" << diachi_to << "|" << diachi_phuong << "|" << diachi_tp << "|" << diachi_qg << endl;
+    return ss.str();
+}
+string Patient::getName() const
+{
+    return tenBN;
+}
+void Patient::setID(const string &id)
+{
+    id_bn = id;
+}
+string Patient::getID() const
+{
+    return id_bn;
+}
+
 void Patient::nhap()
 {
     cout << "Ten benh nhan: ";
@@ -136,7 +168,7 @@ void Patient::nhap()
     cout << "Nhap quoc gia: ";
     getline(cin, diachi_qg);
 }
-void Patient::hienthithongtinbn()
+void Patient::hienthithongtinbn() const
 {
     cout << "Ten benh nhan: " << tenBN << endl;
     cout << "So dien thoai: " << sdtbn << endl;
@@ -148,4 +180,24 @@ void Patient::hienthithongtinbn()
     cout << "-Phuong: " << diachi_phuong << endl;
     cout << "-Thanh pho: " << diachi_tp << endl;
     cout << "-Quoc gia: " << diachi_qg << endl;
+}
+void Patient::xuatdstufile(const string &fl)
+{
+    ifstream fin(fl);
+    if (!fin.is_open())
+    {
+        cerr << "0 the mo file " << fl << "de ghi";
+        return;
+    }
+    string l;
+    while (getline(fin, l))
+    {
+        if (l.empty())
+            continue; // bo qua dong trong
+        Patient p = read(l);
+        p.hienthithongtinbn();
+        cout << "-----------------";
+    }
+    fin.close();
+    /// cleanfile("BenhNhan.txt");
 }
