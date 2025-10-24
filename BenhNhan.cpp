@@ -201,3 +201,88 @@ void Patient::xuatdstufile(const string &fl)
     fin.close();
     /// cleanfile("BenhNhan.txt");
 }
+
+void Patient::setTen(const string &ten)
+{
+    tenBN = ten;
+}
+void Patient::setGT(const int &gt)
+{
+    gioitinh = gt;
+}
+void Patient::setsdt(const string &sdt)
+{
+    sdtbn = sdt;
+}
+void Patient::setcccd(const string &cc)
+{
+    cccd = cc;
+}
+void Patient::setngay(const int &n)
+{
+    ngay = n;
+}
+void Patient::setthang(const int &t)
+{
+    thang = t;
+}
+void Patient::setnam(const int &na)
+{
+    nam = na;
+}
+void Patient::setto(const string &to)
+{
+    diachi_to = to;
+}
+void Patient::setphuong(const string &phuong)
+{
+    diachi_phuong = phuong;
+}
+void Patient::settp1(const string &tp)
+{
+    diachi_tp = tp;
+}
+void Patient::setqg(const string &qg)
+{
+    diachi_qg = qg;
+}
+int Patient::getgt() const
+{
+    return gioitinh;
+}
+string Patient::getcccd() const
+{
+    return cccd;
+}
+int Patient::getngay() const
+{
+    return ngay;
+}
+int Patient::getthang() const
+{
+    return thang;
+}
+int Patient::getnam() const
+{
+    return nam;
+}
+string Patient::getto() const
+{
+    return diachi_to;
+}
+string Patient::getphuong() const
+{
+    return diachi_phuong;
+}
+string Patient::gettp1() const
+{
+    return diachi_tp;
+}
+string Patient ::getqg() const
+{
+    return diachi_qg;
+}
+string Patient ::getsdt() const
+{
+    return sdtbn;
+}

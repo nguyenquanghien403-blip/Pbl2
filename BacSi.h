@@ -16,13 +16,23 @@ public:
   {
     next_ID++;
     ostringstream s;
-    cout << setw(3) << " " << setfill('0') << next_ID;
+    s << setw(3) << " " << setfill('0') << next_ID;
     id_BS = s.str();
   };
-  string getID() const { return id_BS; }
-  void nhap();
+  string getIDBS() const;
+  string getTenBS() const;
+  string getsdtbs() const;
+  int getck() const;
+
+  void setIDBS(string);
+  void settenbs(string);
+  void setsdt(string);
+  void setck(int);
+
+  void nhapbs();
   bool Ktrasdt(const string &);
   void hienthithongtinbs();
   string write();
   static Doctor read(const string &);
+  string chuoibs() const;
 };

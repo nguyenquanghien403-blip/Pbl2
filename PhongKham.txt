@@ -1,0 +1,44 @@
+PK001|Phong kham Noi Tong Hop|Noi Khoa
+PK002|Phong kham Nhi|Ngoai Khoa
+PK003|Phong kham Da Lieu|4
+PK004|Phong kham Mat|5
+PK005|Phong kham Rang Ham Mat|6
+PK006|Phong kham Tai Mui Hong|1
+PK007|Phong kham Noi Tiet|3
+PK008|Phong kham Tieu Hoa|4
+PK009|Phong kham Than|2
+PK010|Phong kham Tim|5
+PK001|Phong kham Noi Tong Hop
+PK002|Phong kham Nhi
+PK003|Phong kham Da Lieu
+PK004|Phong kham Mat
+PK005|Phong kham Rang Ham Mat
+PK006|Phong kham Tai Mui Hong
+PK007|Phong kham Noi Tiet
+PK008|Phong kham Tieu Hoa
+PK009|Phong kham Than
+PK010|Phong kham Tim
+011|Dem
+001|Hien
+PK001|Phong kham Noi Tong Hop
+PK002|Phong kham Nhi
+PK003|Phong kham Da Lieu
+PK004|Phong kham Mat
+PK005|Phong kham Rang Ham Mat
+PK006|Phong kham Tai Mui Hong
+PK007|Phong kham Noi Tiet
+PK008|Phong kham Tieu Hoa
+PK009|Phong kham Than
+PK010|Phong kham Tim
+PK001|Phong kham Noi Tong Hop
+PK002|Phong kham Nhi
+PK003|Phong kham Da Lieu
+PK004|Phong kham Mat
+PK005|Phong kham Rang Ham Mat
+PK006|Phong kham Tai Mui Hong
+PK007|Phong kham Noi Tiet
+PK008|Phong kham Tieu Hoa
+PK009|Phong kham Than
+PK010|Phong kham Tim
+011|Dem
+001|Hien
