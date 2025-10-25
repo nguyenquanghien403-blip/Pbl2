@@ -17,7 +17,7 @@ void LichKham::nhap()
     BacSi.nhapbs();
     cout << "\n Nhap thong tin benh nhan: ";
     BenhNhan.nhap();
-    cout << "\n Nhập thông tin trạng thái lịch khám: ";
+    cout << "\n Nhập thông tin trang thai lich kham: ";
     Trangthai.nhap();
 }
 void LichKham::hienthithongtinlk()
@@ -30,15 +30,15 @@ void LichKham::hienthithongtinlk()
     BacSi.hienthithongtinbs();
     cout << "\n benh nhan: ";
     BenhNhan.hienthithongtinbn();
-    // cout << "\n phong kham: ";
-    // Phongkham.hienthithongtinpk();
-    // cout << "\n trang thai: ";
-    // Trangthai.hienthitrangthai();
+    /*cout << "\n phong kham: ";
+    Phongkham.hienthithongtinpk();*/
+    cout << "\n trang thai: ";
+    Trangthai.hienthithongtin();
 }
 string LichKham::write() const
 {
     stringstream ss;
-    ss << MaLich << "|" << NgayKham << "|" << GioKham << "|" << BacSi.getIDBS() << "|" << BenhNhan.getID() << "|"; //<< Trangthai << "\n";
+    ss << MaLich << "|" << NgayKham << "|" << GioKham << "|" << BacSi.getIDBS() << "|" << BenhNhan.getID() << "|" << Trangthai << "\n";
     return ss.str();
 }
 LichKham LichKham::read(const string &line)
