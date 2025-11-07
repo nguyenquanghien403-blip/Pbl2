@@ -204,7 +204,7 @@ void menubs()
 }
 void menupk()
 {
-    TrangThai dspk[50];
+    TrangThai_ dspk[50];
     int n = 0;
     int chon;
     do

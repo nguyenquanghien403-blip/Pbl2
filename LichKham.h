@@ -9,6 +9,8 @@ using namespace std;
 class LichKham
 {
 private:
+
+public:
     string MaLich;
     string id_bn;
     string id_bs;
@@ -21,8 +23,6 @@ private:
     Patient BenhNhan;
     Doctor BacSi;
     TrangThai Trangthai;
-
-public:
     LichKham();
     // LichKham(int, int, int, int, const string &, const string &);
     void nhap();

@@ -4,7 +4,7 @@
 #include "BacSi.h"
 using namespace std;
 
-class TrangThai
+class TrangThai_
 {
 private:
     string idtt;
@@ -15,8 +15,8 @@ private:
     int slgbn;
 
 public:
-    TrangThai();
-    TrangThai(string, string);
+    TrangThai_();
+    TrangThai_(string, string);
 
     void nhap();
     void themBN();
@@ -26,8 +26,8 @@ public:
 
     string getidtt() const;
     string gettentt() const;
-    friend ostream &operator<<(ostream &, const TrangThai &);
-    friend istream &operator>>(istream &, TrangThai &);
+    friend ostream &operator<<(ostream &, const TrangThai_ &);
+    friend istream &operator>>(istream &, TrangThai_ &);
     void setidtt(string);
     void settentt(string);
 };
