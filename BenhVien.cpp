@@ -4,6 +4,20 @@
     next_id = 01;
     load();
 }*/
+// Hàm xóa khoảng trắng đầu/cuối và xuống dòng thừa
+string Quanly::trim(const string &s) const
+{
+    string res = s;
+    // xóa khoảng trắng đầu
+    res.erase(res.begin(), find_if(res.begin(), res.end(), [](unsigned char ch)
+                                   { return !isspace(ch); }));
+    // xóa khoảng trắng cuối
+    res.erase(find_if(res.rbegin(), res.rend(), [](unsigned char ch)
+                      { return !isspace(ch); })
+                  .base(),
+              res.end());
+    return res;
+}
 Quanly::Quanly(int cp, int cpbs)
 {
 
@@ -46,24 +60,128 @@ void Quanly::them(Patient &p) // hàm thêm quản lý nhân viên, bác sĩ
     // p.setID(to_string(next_idbn++));
     ds[soluong++] = p;
 }
-void Quanly::them()
+string Quanly::tolower1(string s) const
 {
-    Patient p;
-    p.nhap();
-    bool ktra = false;
+    std::transform(s.begin(), s.end(), s.begin(),
+                   [](unsigned char c)
+                   { return static_cast<char>(std::tolower(c)); });
+    return s;
+}
+
+bool Quanly::ktratrungten(const string &ten) const
+{
+    string ten1 = trim(ten);
     for (int i = 0; i < soluong; i++)
     {
-        if (ds[i].getName() == p.getName() || ds[i].getcccd() == p.getcccd())
-        {
-            cout << "Co nguoi trung ten. Vui long nhap ten khac... " << endl;
-            ktra = true;
-            break;
-        }
+        if (tolower1(trim(ds[i].getName())) == tolower1(ten1))
+            return true;
     }
-    if (!ktra)
+    return false;
+}
+
+bool Quanly::ktratrungcccd(const string &cc) const
+{
+    for (int i = 0; i < soluong; i++)
     {
-        ds[soluong] = p;
-        soluong++;
+        if (ds[i].getcccd() == cc)
+            return true;
+    }
+    return false;
+}
+
+bool Quanly::ktratrungsdt(const string &sdt) const
+{
+    for (int i = 0; i < soluong; i++)
+    {
+        if (ds[i].getsdt() == sdt)
+            return true;
+    }
+    return false;
+}
+
+void Quanly::them()
+{
+    // Patient p;
+    // p.nhap();
+    // bool ktra = false;
+    // for (int i = 0; i < soluong; i++)
+    // {
+    //     if (ds[i].getName() == p.getName() || ds[i].getcccd() == p.getcccd())
+    //     {
+    //         cout << "Co nguoi trung ten. Vui long nhap ten khac... " << endl;
+    //         ktra = true;
+    //         break;
+    //     }
+    // }
+    // if (!ktra)
+    // {
+    //     ds[soluong] = p;
+    //     soluong++;
+    // }
+    Patient p;
+
+    // lặp cho đến khi nhập hợp lệ (tên, cccd, sdt không trùng)
+    while (true)
+    {
+        p.nhap(); // gọi hàm nhập từ Patient
+
+        // kiểm tra trùng tên
+        if (ktratrungten(p.getName()))
+        {
+            cout << "Ten benh nhan da ton tai! Vui long nhap ten khac.\n";
+            // hỏi người dùng có muốn nhập lại hay hủy
+            cout << "Ban muon nhap lai? (y/N): ";
+            string ans;
+            getline(cin, ans);
+            if (ans.empty() || (ans[0] != 'y' && ans[0] != 'Y'))
+                return;
+            continue; // nhập lại
+        }
+
+        // kiểm tra trùng CCCD
+        if (ktratrungcccd(p.getcccd()))
+        {
+            cout << "CCCD da ton tai! Vui long kiem tra lai.\n";
+            cout << "Ban muon nhap lai? (y/N): ";
+            string ans;
+            getline(cin, ans);
+            if (ans.empty() || (ans[0] != 'y' && ans[0] != 'Y'))
+                return;
+            continue;
+        }
+
+        // kiểm tra trùng SDT (tuỳ chọn)
+        if (ktratrungsdt(p.getsdt()))
+        {
+            cout << "So dien thoai da ton tai! Vui long kiem tra lai.\n";
+            cout << "Ban muon nhap lai? (y/N): ";
+            string ans;
+            getline(cin, ans);
+            if (ans.empty() || (ans[0] != 'y' && ans[0] != 'Y'))
+                return;
+            continue;
+        }
+
+        // hợp lệ -> gán ID rồi thêm
+        if (soluong == succhua)
+        {
+            int newcp = succhua * 2;
+            Patient *newds = new Patient[newcp];
+            for (int i = 0; i < soluong; i++)
+                newds[i] = ds[i];
+            delete[] ds;
+            ds = newds;
+            succhua = newcp;
+        }
+
+        stringstream ss;
+        ss << setw(3) << setfill('0') << next_idbn++;
+        p.setID(ss.str());
+
+        ds[soluong++] = p;
+        cout << "Da them benh nhan thanh cong. ID: " << p.getID() << "\n";
+        save();
+        break;
     }
 }
 void Quanly::load()
@@ -79,7 +197,9 @@ void Quanly::load()
             continue;
         Patient p = Patient::read(line);
         /// ds.push_back();
-        them(p);
+        // them(p);
+        if (soluong < succhua)
+            ds[soluong++] = p;
         string id_str = p.getID();
         if (!id_str.empty() && all_of(id_str.begin(), id_str.end(), ::isdigit)) /// neu id trong hoac rong se bo qua
         {
@@ -154,7 +274,7 @@ void Quanly::cleanfile(const string &fname)
 }
 void Quanly::save()
 {
-    ofstream fout("BenhNhan.txt");
+    ofstream fout("BenhNhan.txt", ios::trunc);
     if (!fout.is_open())
     {
         cerr << "0 mo duoc file\n";
@@ -165,7 +285,7 @@ void Quanly::save()
         ds[i].write("BenhNhan.txt");
     }
     fout.close();
-    cleanfile("BenhNhan.txt");
+    /// cleanfile("BenhNhan.txt");
 }
 void Quanly::xoa(const string &id)
 {
@@ -195,6 +315,7 @@ void Quanly::xoa(const string &id)
         fout << ds[i].chuoi() << endl;
     }
     fout.close();
+    save();
 }
 void Quanly::sua(const string &id)
 {

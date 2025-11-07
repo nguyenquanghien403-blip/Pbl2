@@ -36,4 +36,10 @@ public:
     void loadbs();
     void xoabs(const string &);
     void cleanfilebs(const string &);
+    string trim(const string &) const;
+    string tolower1(string) const;
+
+    bool ktratrungten(const string &ten) const;
+    bool ktratrungcccd(const string &cccd) const;
+    bool ktratrungsdt(const string &sdt) const;
 };
