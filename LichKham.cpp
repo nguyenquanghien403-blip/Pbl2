@@ -59,6 +59,127 @@ LichKham LichKham::read(const string &line)
     lk.BenhNhan.setID(idbn);
     return lk;
 }
+bool LichKham::ktratrunglich(const LichKham *ds, int soluong) const
+{
+    for (int i = 0; i < soluong; i++)
+    {
+        if (ds[i].BacSi.getIDBS() == BacSi.getIDBS() &&
+            ds[i].NgayKham == NgayKham &&
+            ds[i].GioKham == GioKham)
+        {
+            return true; // trùng lịch
+        }
+    }
+    return false;
+}
+void LichKham::capnhatTrangThai()
+{
+    cout << "\nCap nhat trang thai (1.Hoan thanh 2.Da huy 3.Dang cho): ";
+    int chon;
+    cin >> chon;
+    cin.ignore();
+    switch (chon)
+    {
+    case 1:
+        Trangthai.setTrangthai("Hoan thanh");
+        break;
+    case 2:
+        Trangthai.setTrangthai("Da huy");
+        break;
+    case 3:
+        Trangthai.setTrangthai("Dang cho");
+        break;
+    default:
+        cout << "Lua chon khong hop le!\n";
+        break;
+    }
+}
+void timkiemLichKham(LichKham *ds, int soluong, const string &key)
+{
+    string keylower = key;
+    transform(keylower.begin(), keylower.end(), keylower.begin(), ::tolower);
+    for (int i = 0; i < soluong; i++)
+    {
+        string tenbs = ds[i].BacSi.getTenBS();
+        string tenbn = ds[i].BenhNhan.getName();
+        transform(tenbs.begin(), tenbs.end(), tenbs.begin(), ::tolower);
+        transform(tenbn.begin(), tenbn.end(), tenbn.begin(), ::tolower);
+
+        if (ds[i].MaLich == key || tenbs.find(keylower) != string::npos || tenbn.find(keylower) != string::npos)
+        {
+            ds[i].hienthithongtinlk();
+        }
+    }
+}
+void sapxepLichTheoNgay(LichKham *ds, int soluong)
+{
+    for (int i = 0; i < soluong - 1; i++)
+    {
+        for (int j = i + 1; j < soluong; j++)
+        {
+            if (ds[i].getday() > ds[j].getday())
+            {
+                swap(ds[i], ds[j]);
+            }
+        }
+    }
+}
+void xoalich(LichKham *ds, int &soluong, const string &ma)
+{
+    for (int i = 0; i < soluong; i++)
+    {
+        if (ds[i].getidlk() == ma)
+        {
+            for (int j = i; j < soluong - 1; j++)
+            {
+                ds[j] = ds[j + 1];
+            }
+            soluong--;
+            cout << "Da xoa lich kham co ma: " << ma << endl;
+            return;
+        }
+    }
+    cout << "Khong tim thay ma lich kham!\n";
+}
+void thongkeLich(LichKham *ds, int soluong)
+{
+    int hoanthanh = 0, dahuy = 0, dangcho = 0;
+    for (int i = 0; i < soluong; i++)
+    {
+        string tt = ds[i].Trangthai.getTrangthai();
+        if (tt == "Hoan thanh")
+            hoanthanh++;
+        else if (tt == "Da huy")
+            dahuy++;
+        else
+            dangcho++;
+    }
+    cout << "\n=== Thong ke lich kham ===\n";
+    cout << "Hoan thanh: " << hoanthanh << endl;
+    cout << "Da huy: " << dahuy << endl;
+    cout << "Dang cho: " << dangcho << endl;
+}
+string LichKham::taoMaTuDong(int stt)
+{
+    stringstream ss;
+    ss << "LK" << setw(3) << setfill('0') << stt + 1;
+    return ss.str();
+}
+void ghifileLichKham(LichKham *ds, int soluong, const string &filename)
+{
+    ofstream f(filename);
+    if (!f.is_open())
+    {
+        cout << "Khong mo duoc file!\n";
+        return;
+    }
+    for (int i = 0; i < soluong; i++)
+    {
+        f << ds[i].write();
+    }
+    f.close();
+}
+
 string LichKham::getidlk() const
 {
     return MaLich;

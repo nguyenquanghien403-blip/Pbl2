@@ -4,6 +4,7 @@
 #include "BenhNhan.h"
 #include "BacSi.h"
 #include "PhongKham.h"
+#include "TrangThai.h"
 using namespace std;
 class LichKham
 {
@@ -51,4 +52,13 @@ public:
     void setBN(const Patient &);
     void setDT(const Doctor &);
     void hienthithongtinlk();
+
+    bool ktratrunglich(const LichKham *, int) const; // kiểm tra trùng
+    void capnhatTrangThai();                         // cập nhật trạng thái
+    static void timkiemLichKham(LichKham *, int, const string &);
+    static void sapxepLichTheoNgay(LichKham *, int);
+    static void xoalich(LichKham *, int &, const string &);
+    static void thongkeLich(LichKham *, int);
+    static void ghifileLichKham(LichKham *, int, const string &);
+    static string taoMaTuDong(int stt); // sinh mã tự động
 };
