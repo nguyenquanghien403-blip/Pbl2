@@ -1,20 +1,20 @@
 #include <bits/stdc++.h>
 #include "PhongKham.h"
-TrangThai::TrangThai()
+TrangThai_::TrangThai_()
 {
     idtt = "";
     tentt = "";
     Khoa = "";
     slgbn = 0;
 }
-TrangThai::TrangThai(string id, string ten)
+TrangThai_::TrangThai_(string id, string ten)
 {
     idtt = id;
     tentt = ten;
     Khoa = "";
     slgbn = 0;
 }
-void TrangThai::nhap()
+void TrangThai_::nhap()
 {
     cout << " Nhap ma phong kham: ";
     getline(cin, idtt);
@@ -25,7 +25,7 @@ void TrangThai::nhap()
     cout << " Nhap thong tin bac si phu trach: \n";
     BacSi.nhapbs();
 }
-void TrangThai::themBN()
+void TrangThai_::themBN()
 {
     if (slgbn < 50)
     {
@@ -37,7 +37,7 @@ void TrangThai::themBN()
         cout << "\nPhong kham da day ";
     }
 }
-void TrangThai::hienthithongtin()
+void TrangThai_::hienthithongtin()
 {
     cout << "\n ==== PHONG KHAM ===";
     cout << "\n Ma phong: " << idtt;
@@ -51,7 +51,7 @@ void TrangThai::hienthithongtin()
     for (int i = 0; i < slgbn; i++)
         dsBN[i].hienthithongtinbn();
 }
-string TrangThai::chuanhoa(string s)
+string TrangThai_::chuanhoa(string s)
 {
     // Bỏ khoảng trắng
     s.erase(remove_if(s.begin(), s.end(), ::isspace), s.end());
@@ -59,7 +59,7 @@ string TrangThai::chuanhoa(string s)
     transform(s.begin(), s.end(), s.begin(), ::tolower);
     return s;
 }
-void TrangThai::read(const string &line, const Doctor dsBS[], int soLuongBS)
+void TrangThai_::read(const string &line, const Doctor dsBS[], int soLuongBS)
 {
     stringstream s(line);
     getline(s, idtt, '|');
@@ -101,12 +101,12 @@ void TrangThai::read(const string &line, const Doctor dsBS[], int soLuongBS)
     cout << "DEBUG Khoa = [" << Khoa << "], gan BacSi = " << BacSi.getTenBS() << endl;
 }
 
-ostream &operator<<(ostream &out, const TrangThai &tt)
+ostream &operator<<(ostream &out, const TrangThai_ &tt)
 {
     out << tt.idtt << ", " << tt.tentt;
     return out;
 }
-istream &operator>>(istream &in, TrangThai &tt)
+istream &operator>>(istream &in, TrangThai_ &tt)
 {
     cout << "Nhap ma trang thai: ";
     getline(in, tt.idtt);
@@ -114,19 +114,19 @@ istream &operator>>(istream &in, TrangThai &tt)
     getline(in, tt.tentt);
     return in;
 }
-string TrangThai::getidtt() const
+string TrangThai_::getidtt() const
 {
     return idtt;
 }
-string TrangThai::gettentt() const
+string TrangThai_::gettentt() const
 {
     return tentt;
 }
-void TrangThai::setidtt(string id)
+void TrangThai_::setidtt(string id)
 {
     idtt = id;
 }
-void TrangThai::settentt(string ten)
+void TrangThai_::settentt(string ten)
 {
     tentt = ten;
 }

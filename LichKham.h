@@ -3,12 +3,12 @@
 #include "BenhVien.h"
 #include "BenhNhan.h"
 #include "BacSi.h"
-#include "PhongKham.h"
+// #include "PhongKham.h"
 #include "TrangThai.h"
 using namespace std;
 class LichKham
 {
-private:
+public:
     string MaLich;
     string id_bn;
     string id_bs;
@@ -57,8 +57,10 @@ public:
     void capnhatTrangThai();                         // cập nhật trạng thái
     static void timkiemLichKham(LichKham *, int, const string &);
     static void sapxepLichTheoNgay(LichKham *, int);
-    static void xoalich(LichKham *, int &, const string &);
+    // void xoalich(LichKham *, int &, const string &);
     static void thongkeLich(LichKham *, int);
-    static void ghifileLichKham(LichKham *, int, const string &);
+    // void ghifileLichKham(LichKham *, int, const string &);
     static string taoMaTuDong(int stt); // sinh mã tự động
 };
+void xoalich(LichKham *, int &, const string &);
+void ghifileLichKham(LichKham *, int, const string &);

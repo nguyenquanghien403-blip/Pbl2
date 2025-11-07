@@ -204,7 +204,7 @@ void menubs()
 }
 void menupk()
 {
-    TrangThai dspk[50];
+    TrangThai_ dspk[50];
     int n = 0;
     int chon;
     do
@@ -357,56 +357,101 @@ void MenuThongKe()
 // Hàm xử lý Lịch Khá (minh họa)
 void MenuLichKham()
 {
+    LichKham dsLich[100];
+    int soLich = 0;
     int choice;
-    LichKham lk;
 
     do
     {
-        cout << "\n--- mMENU QUAN LY LICH KHAM ---" << endl;
-        cout << "1. Tao LICH KHAM moi (Nhap day du thong tin)" << endl;
-        cout << "2. Hien thi mot LICH KHAM minh hoa (Tu tao)" << endl;
-        cout << "0. Quay lai Menu chinh" << endl;
+        cout << "\n=== MENU QUAN LY LICH KHAM ===\n";
+        cout << "1. Nhap lich kham moi\n";
+        cout << "2. Hien thi danh sach lich kham\n";
+        cout << "3. Luu danh sach vao file\n";
+        cout << "4. Doc danh sach tu file\n";
+        cout << "5. Cap nhat trang thai lich kham\n";
+        cout << "6. Xoa lich kham\n";
+        cout << "0. Quay lai menu chinh\n";
+        cout << "===============================\n";
         cout << "Nhap lua chon: ";
         cin >> choice;
-        clear_input_buffer();
+        cin.ignore();
 
         switch (choice)
         {
         case 1:
-            cout << "\n=== NHAP THONG TIN LICH KHAM ===" << endl;
-            // LichKham::nhap() gọi cả Patient::nhap() và Doctor::nhapbs()
-            lk.nhap();
-            lk.hienthithongtinlk();
-            // Lưu ý: Chưa có hàm lưu danh sách LichKham vào file
+            if (soLich < 100)
+            {
+                cout << "\nNhap lich kham thu " << soLich + 1 << ":\n";
+                dsLich[soLich].nhap();
+                dsLich[soLich].setid(dsLich[soLich].taoMaTuDong(soLich));
+                soLich++;
+            }
+            else
+                cout << "Danh sach lich kham da day!\n";
             break;
+
         case 2:
+            for (int i = 0; i < soLich; i++)
+            {
+                cout << "\n--- Lich kham thu " << i + 1 << " ---";
+                dsLich[i].hienthithongtinlk();
+            }
+            break;
+
+        case 3:
+            ghifileLichKham(dsLich, soLich, "LichKham.txt");
+            cout << "Da luu danh sach vao LichKham.txt\n";
+            break;
+
+        case 4:
         {
-            cout << "\n=== LICH KHAM MINH HOA ===" << endl;
-            Doctor d_temp;
-            d_temp.setIDBS("115");
-            d_temp.settenbs("Bac Si Minh Hoa");
-            d_temp.setck(1);
-
-            Patient p_temp;
-            p_temp.setID("010");
-            p_temp.setTen("Benh Nhan Demo");
-
-            LichKham lk_demo;
-            lk_demo.setid("LK_DEMO");
-            lk_demo.setday("27/10/2025");
-            lk_demo.settime("14:30");
-            lk_demo.setDT(d_temp);
-            lk_demo.setBN(p_temp);
-
-            lk_demo.hienthithongtinlk();
-            cout << "Chuoi ghi file: " << lk_demo.write() << endl;
+            ifstream f("LichKham.txt");
+            string line;
+            soLich = 0;
+            while (getline(f, line) && soLich < 100)
+            {
+                dsLich[soLich++] = LichKham::read(line);
+            }
+            f.close();
+            cout << "Da doc " << soLich << " lich kham tu file.\n";
             break;
         }
-        case 0:
-            cout << "Quay lai Menu chinh." << endl;
+
+        case 5:
+        {
+            string id;
+            cout << "Nhap ma lich kham can cap nhat trang thai: ";
+            getline(cin, id);
+            bool found = false;
+            for (int i = 0; i < soLich; i++)
+            {
+                if (dsLich[i].getidlk() == id)
+                {
+                    dsLich[i].capnhatTrangThai();
+                    found = true;
+                    break;
+                }
+            }
+            if (!found)
+                cout << "Khong tim thay ma lich kham!\n";
             break;
+        }
+
+        case 6:
+        {
+            string ma;
+            cout << "Nhap ma lich kham can xoa: ";
+            getline(cin, ma);
+            xoalich(dsLich, soLich, ma);
+            break;
+        }
+
+        case 0:
+            cout << "Quay lai menu chinh...\n";
+            break;
+
         default:
-            cout << "Lua chon khong hop le. Vui long nhap lai." << endl;
+            cout << "Lua chon khong hop le!\n";
         }
     } while (choice != 0);
 }
