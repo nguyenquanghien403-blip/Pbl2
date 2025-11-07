@@ -6,9 +6,9 @@
 // Hàm hỗ trợ xóa bộ đệm nhập liệu sau khi dùng cin >>
 void clear_input_buffer()
 {
-    if (cin.fail())
+    if (cin.fail()) /// khi nhap sai kieu du lieu
     {
-        cin.clear();
+        cin.clear(); // xoa co loi
     }
     // Đảm bảo cin.ignore chỉ được gọi sau khi có cin >> hoặc getline,
     // tránh lỗi nếu bộ đệm đã trống
@@ -124,14 +124,36 @@ void menubs()
             break;
         case 2:
         {
-            ifstream fout("BacSi.txt");
-            string line;
-            while (getline(fout, line))
+            // ifstream fout("BacSi.txt");
+            // string line;
+            // while (getline(fout, line))
+            // {
+            //     Doctor d = Doctor::read(line);
+            //     d.hienthithongtinbs();
+            //     d.xuatdsbstufile();
+            // }
+            // fout.close();
+            // break;
+            fstream fin("BacSi.txt");
+            if (!fin.is_open())
             {
-                Doctor d = Doctor::read(line);
-                d.hienthithongtinbs();
+                cout << "Khong mo duoc file BacSi.txt!\n";
+                break;
             }
-            fout.close();
+
+            string line;
+            while (getline(fin, line))
+            {
+                if (line.empty())
+                    continue;
+                Doctor d = Doctor::read(line);
+                d.hienthithongtinbs(); // In ra màn hình
+            }
+            fin.close();
+
+            Doctor temp;
+            temp.xuatdsbstufile("BacSi.txt", "BangBacSi.txt");
+            // cout << "Da xuat bang bac si ra file BangBacSi.txt\n";
             break;
         }
         case 3:

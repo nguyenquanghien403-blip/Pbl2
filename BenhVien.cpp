@@ -16,7 +16,7 @@ Quanly::Quanly(int cp, int cpbs)
     dsbs = new Doctor[succhuabs];
     ds = new Patient[succhua];
     // cleanfile("BenhNhan.txt");
-    // cleanfile("Doctor.txt");
+    //  0 cleanfile("Doctor.txt");
     load();
     loadbs();
 }
@@ -39,11 +39,32 @@ void Quanly::them(Patient &p) // hàm thêm quản lý nhân viên, bác sĩ
         ds = newds;
         succhua = newcp;
     }
+
     stringstream ss;
     ss << setw(3) << setfill('0') << next_idbn++; // 001
     p.setID(ss.str());
     // p.setID(to_string(next_idbn++));
     ds[soluong++] = p;
+}
+void Quanly::them()
+{
+    Patient p;
+    p.nhap();
+    bool ktra = false;
+    for (int i = 0; i < soluong; i++)
+    {
+        if (ds[i].getName() == p.getName() || ds[i].getcccd() == p.getcccd())
+        {
+            cout << "Co nguoi trung ten. Vui long nhap ten khac... " << endl;
+            ktra = true;
+            break;
+        }
+    }
+    if (!ktra)
+    {
+        ds[soluong] = p;
+        soluong++;
+    }
 }
 void Quanly::load()
 {
@@ -74,6 +95,7 @@ void Quanly ::xuat()
     for (int i = 0; i < soluong; i++)
     {
         ds[i].hienthithongtinbn();
+        ds[i].xuatdstufile("BenhNhan.txt", "BangBenhNhan.txt");
     }
 }
 void Quanly::cleanfile(const string &fname)
@@ -229,7 +251,6 @@ void Quanly::sua(const string &id)
         if (tp.empty())
             break;
         if (ds[idx].Ktracccd(tp))
-            ;
         {
             ds[idx].setcccd(tp);
             break;
@@ -307,7 +328,7 @@ void Quanly::thembs(Doctor &d) // hàm thêm quản lý nhân viên, bác sĩ
         succhuabs = newcpbs;
     }
     stringstream ss;
-    ss << setw(3) << setfill('1') << next_idbs++; // 001
+    ss << "BS" << setw(3) << setfill('0') << next_idbs++; // 001
     d.setIDBS(ss.str());
     // p.setID(to_string(next_idbn++));
     dsbs[soluongbs++] = d;
@@ -321,9 +342,11 @@ void Quanly::xuatbs()
     }
     for (int i = 0; i < soluongbs; i++)
     {
-        cout << "\n Bac si thu: " << i + 1 << "--- \n";
+        // cout << "\n Bac si thu: " << i + 1 << "--- \n";
         dsbs[i].hienthithongtinbs();
+        /// dsbs[i].xuatdsbstufile("BacSi.txt", "BangBacSi.txt");
     }
+    dsbs[0].xuatdsbstufile("BacSi.txt", "BangBacSi.txt"); // sau khi chạy xong thì in ra 1 lần duy nhất
 }
 void Quanly::loadbs()
 {
@@ -340,11 +363,15 @@ void Quanly::loadbs()
         /// ds.push_back();
         thembs(p);
         string id_str = p.getIDBS();
-        if (!id_str.empty() && all_of(id_str.begin(), id_str.end(), ::isdigit)) /// neu id trong hoac rong se bo qua
+        if (!id_str.empty() && id_str.rfind("BS", 0) == 0) // nếu bắt đầu bằng "BS"
         {
-            int idsum = stoi(id_str);
-            if (idsum >= next_idbn)
-                next_idbn = idsum + 1;
+            string num = id_str.substr(2);
+            if (all_of(num.begin(), num.end(), ::isdigit))
+            {
+                int idnum = stoi(num);
+                if (idnum >= next_idbs)
+                    next_idbs = idnum + 1;
+            }
         }
     }
     fin.close();
@@ -367,7 +394,7 @@ void Quanly::cleanfilebs(const string &fname)
         }
         int ppdem = count_if(line.begin(), line.end(), [](char c)
                              { return c == '|'; });
-        if (ppdem >= 5) // vai truong toi thieu
+        if (ppdem >= 3) // vai truong toi thieu
         {
             dem++;
         }
@@ -410,9 +437,9 @@ void Quanly::savebs()
         cerr << "0 mo duoc file\n";
         return;
     }
-    for (int i = 0; i < soluong; i++)
+    for (int i = 0; i < soluongbs; i++)
     {
-        ds[i].write("BacSi.txt");
+        dsbs[i].write();
     }
     fout.close();
     cleanfile("BacSi.txt");

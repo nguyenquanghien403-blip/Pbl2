@@ -47,5 +47,6 @@ public:
     void setID(const string &);
     string getID() const;
     string chuoi() const;
-    void xuatdstufile(const string &);
+    void xuatdstufile(const string &, const string &);
+    // friend ostream()
 };

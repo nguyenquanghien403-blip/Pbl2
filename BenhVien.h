@@ -19,6 +19,7 @@ public:
     Quanly(int cp = 10, int cpbs = 10);
     ~Quanly();
     void them(Patient &);
+    void them();
     void load();
     void xuat();
     void save();

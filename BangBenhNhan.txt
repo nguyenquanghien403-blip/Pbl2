@@ -1,0 +1,25 @@
+| Ten BN              | SDT          | Gioi tinh| CCCD          | Ngay Sinh   | To   | Phuong       | Thanh Pho   | Quoc gia  |
+--------------------------------------------------------------------------------------------------------------
+| Nguyen Van A        | 905123456    | Nam     | 012345678901  | 12/5/2002   | 12   | Hoa Thuan    | Da Nang     | Viet Nam  |
+| Tran Thi B          | 987654321    | Khac    | 987654321098  | 1/1/1999    | 5    | Phuoc My     | Da Nang     | Viet Nam  |
+| Le Van C            | 912345678    | Nam     | 123456789012  | 31/12/2000  | 7    | Hai Chau     | Da Nang     | Viet Nam  |
+| Pham Thi D          | 904000001    | Khac    | 234567890123  | 15/8/2003   | 10   | Hoa Minh     | Da Nang     | Viet Nam  |
+| Bui Van E           | 904000002    | Nam     | 345678901234  | 2/9/1998    | 2    | Hoa Khanh    | Da Nang     | Viet Nam  |
+| Hoang Thi F         | 904000003    | Khac    | 456789012345  | 23/3/2001   | 8    | Hoa Phu      | Da Nang     | Viet Nam  |
+| Do Van G            | 904000004    | Nam     | 567890123456  | 11/11/1995  | 3    | Cam Le       | Da Nang     | Viet Nam  |
+| Vu Thi H            | 904000005    | Khac    | 678901234567  | 9/7/1997    | 6    | Lien Chieu   | Da Nang     | Viet Nam  |
+| Nguyen Van I        | 904000006    | Nam     | 789012345678  | 14/2/2004   | 1    | Son Tra      | Da Nang     | Viet Nam  |
+| Tran Thi J          | 904000007    | Khac    | 890123456789  | 27/4/1996   | 9    | Ngu Hanh Son | Da Nang     | Viet Nam  |
+| Le Van K            | 904000008    | Nam     | 901234567890  | 5/6/1993    | 4    | Hai Chau     | Da Nang     | Viet Nam  |
+| Pham Thi L          | 904000009    | Khac    | 012345678912  | 19/10/2005  | 11   | Hoa Vang     | Da Nang     | Viet Nam  |
+| Bui Van M           | 904000010    | Nam     | 123450987654  | 8/8/1994    | 13   | Thanh Khe    | Da Nang     | Viet Nam  |
+| Hoang Thi N         | 904000011    | Khac    | 234560987123  | 22/9/2002   | 15   | Cam Le       | Da Nang     | Viet Nam  |
+| Do Van O            | 904000012    | Nam     | 345670981234  | 3/1/1990    | 16   | Lien Chieu   | Da Nang     | Viet Nam  |
+| Vu Thi P            | 904000013    | Khac    | 456780912345  | 10/12/1991  | 17   | Son Tra      | Da Nang     | Viet Nam  |
+| Nguyen Van Q        | 904000014    | Nam     | 567890123450  | 25/5/1999   | 18   | Hoa Khanh    | Da Nang     | Viet Nam  |
+| Tran Thi R          | 904000015    | Khac    | 678901234501  | 6/6/2003    | 19   | Phuoc My     | Da Nang     | Viet Nam  |
+| Le Van S            | 904000016    | Nam     | 789012345012  | 17/7/2001   | 20   | Hai Chau     | Da Nang     | Viet Nam  |
+| Pham Thi T          | 904000017    | Khac    | 890123456023  | 29/9/1998   | 21   | Thanh Khe    | Da Nang     | Viet Nam  |
+|  Quang Hien         | 0905650359   | Nam     | 048206008729  | 24/8/2005   | 2    | Hoa Quy      | Da Nang     | Viet Nam  |
+| Khai                | 0379963699   | Nam     | 048206002879  | 23/9/2004   | 3    | Hoa Quy      | Da Nang     | Viet Nam  |
+--------------------------------------------------------------------------------------------------------------

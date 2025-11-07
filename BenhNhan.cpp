@@ -170,18 +170,30 @@ void Patient::nhap()
 }
 void Patient::hienthithongtinbn() const
 {
-    cout << "Ten benh nhan: " << tenBN << endl;
-    cout << "So dien thoai: " << sdtbn << endl;
-    cout << " Gioi tinh: " << gioitinh << endl;
-    cout << "Can cuoc cong dan: " << cccd << endl;
-    cout << " Ngay: " << ngay << " Thang " << thang << " Nam " << nam << endl;
-    cout << " Dia chi: " << endl;
-    cout << "-To: " << diachi_to << endl;
-    cout << "-Phuong: " << diachi_phuong << endl;
-    cout << "-Thanh pho: " << diachi_tp << endl;
-    cout << "-Quoc gia: " << diachi_qg << endl;
+    cout << setfill(' ');
+    cout << "|" << left << setw(20) << "Ten BN"
+         << "|" << setw(13) << "SDT"
+         << "|" << setw(8) << "Gioi tinh"
+         << "|" << setw(14) << "CCCD"
+         << "|" << setw(12) << "Ngay Sinh"
+         << "|" << setw(5) << "To"
+         << "|" << setw(13) << "Phuong"
+         << "|" << setw(12) << "Thanh Pho"
+         << "|" << setw(10) << "Quoc gia" << "|\n";
+    cout << "________________________________________";
+    string gt = (gioitinh == 1 ? "Nam" : (gioitinh == 0 ? "Nu" : "Khac"));
+    string ngaySinh = to_string(ngay) + "/" + to_string(thang) + "/" + to_string(nam);
+    cout << "| " << left << setw(20) << tenBN
+         << "| " << setw(13) << sdtbn
+         << "| " << setw(8) << gioitinh
+         << "| " << setw(14) << cccd
+         << "| " << setw(12) << ngaySinh
+         << "| " << setw(5) << diachi_to
+         << "| " << setw(13) << diachi_phuong
+         << "| " << setw(12) << diachi_tp
+         << "| " << setw(10) << diachi_qg << "|\n";
 }
-void Patient::xuatdstufile(const string &fl)
+void Patient::xuatdstufile(const string &fl, const string &out)
 {
     ifstream fin(fl);
     if (!fin.is_open())
@@ -189,16 +201,48 @@ void Patient::xuatdstufile(const string &fl)
         cerr << "0 the mo file " << fl << "de ghi";
         return;
     }
+    ofstream fout(out);
+    {
+        if (!fout.is_open())
+        {
+            cerr << " 0 the mo file " << out << "de ghi.\n";
+            return;
+        }
+    }
+    fout << setfill(' ');
+    fout << "| " << left << setw(20) << "Ten BN"
+         << "| " << setw(13) << "SDT"
+         << "| " << setw(8) << "Gioi tinh"
+         << "| " << setw(14) << "CCCD"
+         << "| " << setw(12) << "Ngay Sinh"
+         << "| " << setw(5) << "To"
+         << "| " << setw(13) << "Phuong"
+         << "| " << setw(12) << "Thanh Pho"
+         << "| " << setw(10) << "Quoc gia" << "|\n";
+    fout << string(150, '-') << "\n";
+
     string l;
     while (getline(fin, l))
     {
         if (l.empty())
             continue; // bo qua dong trong
         Patient p = read(l);
-        p.hienthithongtinbn();
-        cout << "-----------------";
+        string gt = (p.gioitinh == 1 ? "Nam" : (p.gioitinh == 2 ? "Nu" : "Khac"));
+        string ngaySinh = to_string(p.ngay) + "/" + to_string(p.thang) + "/" + to_string(p.nam);
+
+        fout << "| " << left << setw(20) << p.tenBN
+             << "| " << setw(13) << p.sdtbn
+             << "| " << setw(8) << gt
+             << "| " << setw(14) << p.cccd
+             << "| " << setw(12) << ngaySinh
+             << "| " << setw(5) << p.diachi_to
+             << "| " << setw(13) << p.diachi_phuong
+             << "| " << setw(12) << p.diachi_tp
+             << "| " << setw(10) << p.diachi_qg << "|\n";
     }
+    fout << string(150, '-') << '\n';
     fin.close();
+    fout.close();
     /// cleanfile("BenhNhan.txt");
 }
 

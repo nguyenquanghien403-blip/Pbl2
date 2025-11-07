@@ -32,6 +32,7 @@ public:
   void nhapbs();
   bool Ktrasdt(const string &);
   void hienthithongtinbs();
+  void xuatdsbstufile(const string &, const string &);
   string write();
   static Doctor read(const string &);
   string chuoibs() const;
