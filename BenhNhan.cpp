@@ -56,11 +56,111 @@ void Patient::write(const string &fl) const
         return;
         /// return *this;
     }
-    fout << id_bn << "|" << tenBN << "|" << gioitinh << "|" << sdtbn << "|" << cccd << "|" << ngay << "|" << thang << "|" << nam << "|" << diachi_to << "|" << diachi_phuong << "|" << diachi_tp << "|" << diachi_qg << endl;
+    // fout << id_bn << "|" << tenBN << "|" << gioitinh << "|" << sdtbn << "|" << cccd << "|" << ngay << "|" << thang << "|" << nam << "|" << diachi_to << "|" << diachi_phuong << "|" << diachi_tp << "|" << diachi_qg << endl;
+    fout << chuoi() << endl;
     fout.close();
     /// return *this;
 }
 
+// Patient Patient::read(const string &s)
+// {
+//     Patient p;
+//     stringstream ss(s);
+//     string tp;
+
+//     try
+//     {
+//         // ĐẾM SỐ TRƯỜNG
+//         int fieldCount = 0;
+//         string temp = s;
+//         size_t pos = 0;
+//         while ((pos = temp.find('|', pos)) != string::npos) {
+//             fieldCount++;
+//             pos++;
+//         }
+
+//         if (fieldCount < 11) {
+//             cerr << "Du lieu thieu truong: " << s << endl;
+//             return p; // Trả về patient rỗng
+//         }
+
+//         getline(ss, p.id_bn, '|');
+//         getline(ss, p.tenBN, '|');
+
+//         getline(ss, tp, '|');
+//         p.gioitinh = tp.empty() ? 0 : stoi(tp);
+
+//         getline(ss, p.sdtbn, '|');
+//         getline(ss, p.cccd, '|');
+
+//         getline(ss, tp, '|');
+//         p.ngay = tp.empty() ? 0 : stoi(tp);
+
+//         getline(ss, tp, '|');
+//         p.thang = tp.empty() ? 0 : stoi(tp);
+
+//         getline(ss, tp, '|');
+//         p.nam = tp.empty() ? 0 : stoi(tp);
+
+//         getline(ss, p.diachi_to, '|');
+//         getline(ss, p.diachi_phuong, '|');
+//         getline(ss, p.diachi_tp, '|');
+//         getline(ss, p.diachi_qg, '|');
+
+//         cout << "Doc thanh cong: " << p.tenBN << " - ID: " << p.id_bn << endl;
+//     }
+//     catch (const exception &e)
+//     {
+//         cerr << "Loi nghiem trong khi doc benh nhan: " << s << endl;
+//         cerr << "Loi: " << e.what() << endl;
+//         // Trả về patient rỗng
+//         p = Patient();
+//     }
+
+//     return p;
+// }
+// Patient Patient::read(const string &s)
+// {
+//     Patient p;
+//     stringstream ss(s);
+//     string tp;
+
+//     try
+//     {
+//         getline(ss, p.id_bn, '|');
+//         getline(ss, p.tenBN, '|');
+
+//         getline(ss, tp, '|');
+//         p.gioitinh = tp.empty() ? 0 : stoi(tp);
+
+//         getline(ss, p.sdtbn, '|');
+//         getline(ss, p.cccd, '|');
+
+//         getline(ss, tp, '|');
+//         p.ngay = tp.empty() ? 0 : stoi(tp);
+
+//         getline(ss, tp, '|');
+//         p.thang = tp.empty() ? 0 : stoi(tp);
+
+//         getline(ss, tp, '|');
+//         p.nam = tp.empty() ? 0 : stoi(tp);
+
+//         getline(ss, p.diachi_to, '|');
+//         getline(ss, p.diachi_phuong, '|');
+//         getline(ss, p.diachi_tp, '|');
+//         getline(ss, p.diachi_qg, '|');
+
+//         // Debug
+//         // cout << "Doc duoc benh nhan: " << p.tenBN << " - ID: " << p.id_bn << endl;
+//     }
+//     catch (const exception &e)
+//     {
+//         cerr << "Loi khi doc benh nhan tu chuoi: " << s << endl;
+//         cerr << "Loi: " << e.what() << endl;
+//     }
+
+//     return p;
+// }
 Patient Patient::read(const string &s)
 {
     Patient p;
@@ -83,14 +183,14 @@ Patient Patient::read(const string &s)
     getline(ss, p.diachi_to, '|');
     getline(ss, p.diachi_phuong, '|');
     getline(ss, p.diachi_tp, '|');
-    getline(ss, p.diachi_qg, '|');
+    getline(ss, p.diachi_qg);
 
     return p;
 }
 string Patient::chuoi() const
 {
     stringstream ss;
-    ss << id_bn << "|" << tenBN << "|" << gioitinh << "|" << sdtbn << "|" << cccd << "|" << ngay << "|" << thang << "|" << nam << "|" << diachi_to << "|" << diachi_phuong << "|" << diachi_tp << "|" << diachi_qg << endl;
+    ss << id_bn << "|" << tenBN << "|" << gioitinh << "|" << sdtbn << "|" << cccd << "|" << ngay << "|" << thang << "|" << nam << "|" << diachi_to << "|" << diachi_phuong << "|" << diachi_tp << "|" << diachi_qg;
     return ss.str();
 }
 string Patient::getName() const
@@ -193,22 +293,145 @@ void Patient::hienthithongtinbn() const
          << "| " << setw(12) << diachi_tp
          << "| " << setw(10) << diachi_qg << "|\n";
 }
+// void Patient::xuatdstufile(const string &fl, const string &out)
+// {
+//     ifstream fin(fl);
+//     if (!fin.is_open())
+//     {
+//         cerr << "Khong the mo file " << fl << " de doc\n";
+//         return;
+//     }
+
+//     ofstream fout(out, ios::trunc);
+//     if (!fout.is_open())
+//     {
+//         cerr << "Khong the mo file " << out << " de ghi.\n";
+//         fin.close();
+//         return;
+//     }
+
+//     // Định dạng header bảng
+//     fout << setfill(' ');
+//     fout << "| " << left << setw(20) << "Ten BN"
+//          << "| " << setw(13) << "SDT"
+//          << "| " << setw(8) << "Gioi tinh"
+//          << "| " << setw(14) << "CCCD"
+//          << "| " << setw(12) << "Ngay Sinh"
+//          << "| " << setw(5) << "To"
+//          << "| " << setw(13) << "Phuong"
+//          << "| " << setw(12) << "Thanh Pho"
+//          << "| " << setw(10) << "Quoc gia" << "|\n";
+//     fout << string(150, '-') << "\n";
+
+//     string line;
+//     int count = 0;
+
+//     while (getline(fin, line))
+//     {
+//         if (line.empty())
+//             continue;
+
+//         cout << "Dang doc dong: " << line << endl; // Debug
+
+//         try
+//         {
+//             Patient p = read(line);
+//             string gt = (p.gioitinh == 1 ? "Nam" : (p.gioitinh == 2 ? "Nu" : "Khac"));
+//             string ngaySinh = to_string(p.ngay) + "/" + to_string(p.thang) + "/" + to_string(p.nam);
+
+//             fout << "| " << left << setw(20) << p.tenBN
+//                  << "| " << setw(13) << p.sdtbn
+//                  << "| " << setw(8) << gt
+//                  << "| " << setw(14) << p.cccd
+//                  << "| " << setw(12) << ngaySinh
+//                  << "| " << setw(5) << p.diachi_to
+//                  << "| " << setw(13) << p.diachi_phuong
+//                  << "| " << setw(12) << p.diachi_tp
+//                  << "| " << setw(10) << p.diachi_qg << "|\n";
+//             count++;
+//         }
+//         catch (const exception &e)
+//         {
+//             cerr << "Loi khi doc dong: " << line << " - " << e.what() << endl;
+//         }
+//     }
+
+//     fout << string(150, '-') << '\n';
+//     fin.close();
+//     fout.close();
+
+//     cout << "Da xuat " << count << " benh nhan sang file: " << out << endl;
+// }
+// void Patient::xuatdstufile(const string &fl, const string &out)
+// {
+//     ifstream fin(fl);
+//     if (!fin.is_open())
+//     {
+//         cerr << "0 the mo file " << fl << "de ghi";
+//         return;
+//     }
+//     ofstream fout(out);
+//     {
+//         if (!fout.is_open())
+//         {
+//             cerr << " 0 the mo file " << out << "de ghi.\n";
+//             return;
+//         }
+//     }
+//     fout << setfill(' ');
+//     fout << "| " << left << setw(20) << "Ten BN"
+//          << "| " << setw(13) << "SDT"
+//          << "| " << setw(8) << "Gioi tinh"
+//          << "| " << setw(14) << "CCCD"
+//          << "| " << setw(12) << "Ngay Sinh"
+//          << "| " << setw(5) << "To"
+//          << "| " << setw(13) << "Phuong"
+//          << "| " << setw(12) << "Thanh Pho"
+//          << "| " << setw(10) << "Quoc gia" << "|\n";
+//     fout << string(150, '-') << "\n";
+
+//     string l;
+//     while (getline(fin, l))
+//     {
+//         if (l.empty())
+//             continue; // bo qua dong trong
+//         Patient p = read(l);
+//         string gt = (p.gioitinh == 1 ? "Nam" : (p.gioitinh == 2 ? "Nu" : "Khac"));
+//         string ngaySinh = to_string(p.ngay) + "/" + to_string(p.thang) + "/" + to_string(p.nam);
+
+//         fout << "| " << left << setw(20) << p.tenBN
+//              << "| " << setw(13) << p.sdtbn
+//              << "| " << setw(8) << gt
+//              << "| " << setw(14) << p.cccd
+//              << "| " << setw(12) << ngaySinh
+//              << "| " << setw(5) << p.diachi_to
+//              << "| " << setw(13) << p.diachi_phuong
+//              << "| " << setw(12) << p.diachi_tp
+//              << "| " << setw(10) << p.diachi_qg << "|\n";
+//     }
+//     fout << string(150, '-') << '\n';
+//     fin.close();
+//     fout.close();
+//     /// cleanfile("BenhNhan.txt");
+// }
 void Patient::xuatdstufile(const string &fl, const string &out)
 {
     ifstream fin(fl);
     if (!fin.is_open())
     {
-        cerr << "0 the mo file " << fl << "de ghi";
+        cerr << "Khong the mo file " << fl << " de doc\n";
         return;
     }
-    ofstream fout(out);
+
+    ofstream fout(out, ios::trunc);
+    if (!fout.is_open())
     {
-        if (!fout.is_open())
-        {
-            cerr << " 0 the mo file " << out << "de ghi.\n";
-            return;
-        }
+        cerr << "Khong the mo file " << out << " de ghi.\n";
+        fin.close();
+        return;
     }
+
+    // Định dạng header bảng
     fout << setfill(' ');
     fout << "| " << left << setw(20) << "Ten BN"
          << "| " << setw(13) << "SDT"
@@ -221,31 +444,78 @@ void Patient::xuatdstufile(const string &fl, const string &out)
          << "| " << setw(10) << "Quoc gia" << "|\n";
     fout << string(150, '-') << "\n";
 
-    string l;
-    while (getline(fin, l))
-    {
-        if (l.empty())
-            continue; // bo qua dong trong
-        Patient p = read(l);
-        string gt = (p.gioitinh == 1 ? "Nam" : (p.gioitinh == 2 ? "Nu" : "Khac"));
-        string ngaySinh = to_string(p.ngay) + "/" + to_string(p.thang) + "/" + to_string(p.nam);
+    string line;
+    int count = 0;
 
-        fout << "| " << left << setw(20) << p.tenBN
-             << "| " << setw(13) << p.sdtbn
-             << "| " << setw(8) << gt
-             << "| " << setw(14) << p.cccd
-             << "| " << setw(12) << ngaySinh
-             << "| " << setw(5) << p.diachi_to
-             << "| " << setw(13) << p.diachi_phuong
-             << "| " << setw(12) << p.diachi_tp
-             << "| " << setw(10) << p.diachi_qg << "|\n";
+    while (getline(fin, line))
+    {
+        if (line.empty())
+            continue;
+
+        cout << "Dang doc dong: " << line << endl; // Debug
+
+        try
+        {
+            Patient p = read(line);
+
+            // KIỂM TRA DỮ LIỆU TRƯỚC KHI XUẤT
+            if (p.tenBN.empty())
+            {
+                cerr << "Du lieu benh nhan khong hop le, bo qua dong: " << line << endl;
+                continue;
+            }
+
+            string gt;
+            switch (p.gioitinh)
+            {
+            case 1:
+                gt = "Nam";
+                break;
+            case 2:
+                gt = "Nu";
+                break;
+            default:
+                gt = "Khac";
+                break;
+            }
+
+            // ĐẢM BẢO NGÀY THÁNG NĂM HỢP LỆ
+            string ngaySinh;
+            if (p.ngay > 0 && p.thang > 0 && p.nam > 0)
+            {
+                ngaySinh = to_string(p.ngay) + "/" + to_string(p.thang) + "/" + to_string(p.nam);
+            }
+            else
+            {
+                ngaySinh = "Khong xac dinh";
+            }
+
+            // XUẤT DỮ LIỆU VỚI KIỂM TRA RỖNG
+            fout << "| " << left << setw(20) << (p.tenBN.empty() ? "KXD" : p.tenBN)
+                 << "| " << setw(13) << (p.sdtbn.empty() ? "KXD" : p.sdtbn)
+                 << "| " << setw(8) << gt
+                 << "| " << setw(14) << (p.cccd.empty() ? "KXD" : p.cccd)
+                 << "| " << setw(12) << ngaySinh
+                 << "| " << setw(5) << (p.diachi_to.empty() ? "KXD" : p.diachi_to)
+                 << "| " << setw(13) << (p.diachi_phuong.empty() ? "KXD" : p.diachi_phuong)
+                 << "| " << setw(12) << (p.diachi_tp.empty() ? "KXD" : p.diachi_tp)
+                 << "| " << setw(10) << (p.diachi_qg.empty() ? "KXD" : p.diachi_qg) << "|\n";
+            count++;
+        }
+        catch (const exception &e)
+        {
+            cerr << "Loi khi doc dong: " << line << " - " << e.what() << endl;
+            // TIẾP TỤC XỬ LÝ CÁC DÒNG TIẾP THEO THAY VÌ DỪNG LẠI
+            continue;
+        }
     }
+
     fout << string(150, '-') << '\n';
     fin.close();
     fout.close();
-    /// cleanfile("BenhNhan.txt");
-}
 
+    cout << "Da xuat " << count << " benh nhan sang file: " << out << endl;
+}
 void Patient::setTen(const string &ten)
 {
     tenBN = ten;

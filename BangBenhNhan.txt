@@ -1,15 +1,4 @@
 | Ten BN              | SDT          | Gioi tinh| CCCD          | Ngay Sinh   | To   | Phuong       | Thanh Pho   | Quoc gia  |
 ------------------------------------------------------------------------------------------------------------------------------------------------------
-| Nguyen Van A        | 905123456    | Nam     | 012345678901  | 12/5/2002   | 12   | Hoa Thuan    | Da Nang     | Viet Nam  |
-| Tran Thi B          | 987654321    | Khac    | 987654321098  | 1/1/1999    | 5    | Phuoc My     | Da Nang     | Viet Nam  |
-| Le Van C            | 912345678    | Nam     | 123456789012  | 31/12/2000  | 7    | Hai Chau     | Da Nang     | Viet Nam  |
-| Pham Thi D          | 904000001    | Khac    | 234567890123  | 15/8/2003   | 10   | Hoa Minh     | Da Nang     | Viet Nam  |
-| Bui Van E           | 904000002    | Nam     | 345678901234  | 2/9/1998    | 2    | Hoa Khanh    | Da Nang     | Viet Nam  |
-| Hoang Thi F         | 904000003    | Khac    | 456789012345  | 23/3/2001   | 8    | Hoa Phu      | Da Nang     | Viet Nam  |
-| Do Van G            | 904000004    | Nam     | 567890123456  | 11/11/1995  | 3    | Cam Le       | Da Nang     | Viet Nam  |
-| Vu Thi H            | 904000005    | Khac    | 678901234567  | 9/7/1997    | 6    | Lien Chieu   | Da Nang     | Viet Nam  |
-| Nguyen Van I        | 904000006    | Nam     | 789012345678  | 14/2/2004   | 1    | Son Tra      | Da Nang     | Viet Nam  |
-| Tran Thi J          | 904000007    | Khac    | 890123456789  | 27/4/1996   | 9    | Ngu Hanh Son | Da Nang     | Viet Nam  |
-| Quang Hien          | 0337129076   | Nam     | 048206002879  | 23/9/2006   | 2    | HQ           | DN          | VN        |
-| Quang Hien          | 0337129076   | Nam     | 048206002879  | 23/9/2006   | 2    | HQ           | DN          | VN        |
+| Quang Hien          | 0337129076   | Nam     | 048206002879  | 23/9/2006   | 2    | HQ           | DN          | VNBN002|Nguyen Van A|1|0912345678|001200123456|15|3|1985|12|Phuong 1|Quan 1|Viet NamBN003|Tran Thi B|2|0987654321|001200123457|20|6|1990|25|Phuong 2|Quan 2|Viet NamBN004|NQH|1|0338129077|049111002879|23|9|2006|2|HQ|DN|VN|
 ------------------------------------------------------------------------------------------------------------------------------------------------------
