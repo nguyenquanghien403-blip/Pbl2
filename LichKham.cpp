@@ -65,7 +65,7 @@ string LichKham::write() const
     stringstream ss;
     ss << MaLich << "|" << id_bn << "|" << id_bs << "|"
        << NgayKham << "|" << GioKham << "|" << trangThai.getTrangthai()
-       << "|" << fixed << setprecision(0) << tien; // Thêm tiền
+       << "|" << fixed << setprecision(0) << tien << '\n'; // Thêm tiền
     return ss.str();
 }
 // LichKham LichKham::read(const string &line)
@@ -254,7 +254,7 @@ void ghifileLichKham(LichKham *ds, int soluong, const string &filename)
 {
     ofstream f(filename);
     if (!f.is_open())
-    {
+    {  
         cout << "Khong mo duoc file!\n";
         return;
     }

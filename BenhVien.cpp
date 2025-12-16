@@ -135,8 +135,8 @@ void Quanly::themlichkham()
     // Hiển thị danh sách bác sĩ và bệnh nhân để tham khảo
     cout << "\n--- DANH SACH BAC SI ---\n";
     xuatbs();
-    cout << "\n--- DANH SACH BENH NHAN ---\n";
-    xuat();
+    // cout << "\n--- DANH SACH BENH NHAN ---\n";
+    // xuat();
 
     // Nhập thông tin trực tiếp
     string idBS, idBN, ngay, gio;
@@ -891,8 +891,8 @@ void Quanly::themLichKhamVoiID()
     cout << "\n--- DANH SACH BAC SI ---\n";
     xuatbs();
 
-    cout << "\n--- DANH SACH BENH NHAN ---\n";
-    xuat();
+    // cout << "\n--- DANH SACH BENH NHAN ---\n";
+    // xuat();
 
     string idBS, idBN, ngay, gio;
 

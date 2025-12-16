@@ -1,4 +1,5 @@
 #include "Bacsi.h"
+using namespace std;
 int Doctor::next_ID = 10;
 bool Doctor::Ktrasdt(const string &p)
 {
@@ -105,37 +106,49 @@ Doctor Doctor::read(const string &p)
 }
 
 void Doctor::hienthithongtinbs()
-{
-    cout << "ID Bac si: " << id_BS << endl;
-    cout << " Ho va ten bac si: " << tenBS << endl;
-    cout << " So dien thoai: " << sdt << endl;
-    cout << " Chuyen khoa: ";
+{ // Phần tiêu đề bảng
+    cout << "\n";
+    cout << setfill(' ');
+    cout << "| " << left << setw(8) << "ID BS"
+         << "| " << setw(20) << "Ho ten Bac si"
+         << "| " << setw(12) << "So dien thoai"
+         << "| " << setw(15) << "Chuyen khoa" << " |\n";
+    cout << setfill('-') << setw(60) << "" << setfill(' ') << endl;
+
+    // Hiển thị thông tin bác sĩ hiện tại
+    cout << "| " << left << setw(8) << id_BS
+         << "| " << setw(20) << tenBS
+         << "| " << setw(12) << sdt
+         << "| " << setw(15);
+
+    // Hiển thị chuyên khoa dạng chuỗi
     switch (chuyenkhoa)
     {
     case 1:
-        cout << " Khoa Tim Mach" << endl;
+        cout << "Tim Mach";
         break;
     case 2:
-        cout << " Noi Khoa" << endl;
+        cout << "Noi Khoa";
         break;
     case 3:
-        cout << " Ngoai Khoa" << endl;
+        cout << "Ngoai Khoa";
         break;
     case 4:
-        cout << " Da Lieu" << endl;
+        cout << "Da Lieu";
         break;
     case 5:
-        cout << " Tai Mui Hong" << endl;
+        cout << "Tai Mui Hong";
         break;
     case 6:
-        cout << " Noi Tong Hop" << endl;
+        cout << "Noi Tong Hop";
         break;
     default:
-        cout << " Khong co khoa hop le!\n";
+        cout << "Khong xac dinh";
         break;
     }
-    cout << endl;
+    cout << " |\n";
 }
+
 void Doctor::xuatdsbstufile(const string &inputFile, const string &outputFile)
 {
     ifstream fin(inputFile);

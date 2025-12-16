@@ -458,8 +458,7 @@ void Patient::xuatdstufile(const string &fl, const string &out)
         {
             Patient p = read(line);
 
-            // KIỂM TRA DỮ LIỆU TRƯỚC KHI XUẤT
-            if (p.tenBN.empty())
+                        if (p.tenBN.empty())
             {
                 cerr << "Du lieu benh nhan khong hop le, bo qua dong: " << line << endl;
                 continue;
@@ -479,7 +478,6 @@ void Patient::xuatdstufile(const string &fl, const string &out)
                 break;
             }
 
-            // ĐẢM BẢO NGÀY THÁNG NĂM HỢP LỆ
             string ngaySinh;
             if (p.ngay > 0 && p.thang > 0 && p.nam > 0)
             {
